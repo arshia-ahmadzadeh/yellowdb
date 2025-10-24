@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=80.9.0", "wheel>=0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "yellowdb"
+version = "1.0.0"
+description = "A high-performance LSM-tree based key-value database written in Python"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+authors = [{name = "Arshia Ahmadzadeh", email = "squirrelspirits@gmail.com"}]
+dependencies = ["sortedcontainers>=2.4.0"]
+keywords = ["database", "key-value", "lsm-tree", "storage", "in-memory", "performance", "embedded"]
+classifiers = ["Development Status :: 4 - Beta", "Intended Audience :: Developers", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.8", "Programming Language :: Python :: 3.9", "Programming Language :: Python :: 3.10", "Programming Language :: Python :: 3.11", "Programming Language :: Python :: 3.12", "Topic :: Database", "Topic :: Software Development :: Libraries :: Python Modules"]
+
+[project.urls]
+Homepage = "https://github.com/arshia-ahmadzadeh/yellowdb"
+Repository = "https://github.com/arshia-ahmadzadeh/yellowdb.git"
+"Bug Tracker" = "https://github.com/arshia-ahmadzadeh/yellowdb/issues"
+Documentation = "https://github.com/arshia-ahmadzadeh/yellowdb#readme"
+
+[tool.setuptools]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["yellowdb*"]
+
+[tool.setuptools.package-data]
+yellowdb = ["py.typed"]
+
+[project.optional-dependencies]
+dev = ["ruff>=0.6.0", "pre-commit>=3.0.0"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+extend-exclude = [".git", ".venv", "venv", "__pycache__", "*.egg-info", ".pytest_cache", ".mypy_cache"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "N", "D", "UP", "B", "C4", "SIM"]
+ignore = ["D100", "D104", "D105", "E501", "SIM105"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["yellowdb"]
+known-third-party = ["sortedcontainers"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+combine-as-imports = true
+
+[tool.ruff.format]
+indent-style = "space"
+quote-style = "double"
+skip-magic-trailing-comma = false
